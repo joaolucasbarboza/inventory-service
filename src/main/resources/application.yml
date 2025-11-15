@@ -4,6 +4,14 @@ server:
 spring:
   application:
     name: inventory-service
+  kafka:
+    bootstrap-servers: ${KAFKA_BROKER:localhost:9092}
+    topic:
+      inventory-success: inventory-success
+      inventory-fail: inventory-fail
+    consumer:
+      group-id: inventory-service-group
+      auto-offset-reset: latest
   datasource:
     driver-class-name: org.postgresql.Driver
     url: jdbc:postgresql://${SPRING_DATASOURCE_HOST}:${SPRING_DATASOURCE_PORT}/${SPRING_DATASOURCE_DBNAME}
